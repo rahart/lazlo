@@ -13,7 +13,7 @@ var Belittle = &lazlo.Module{
 }
 
 func belittleUser(broker *lazlo.Broker) {
-    cb := b.MessageCallback(`(?i)(belittle) (@*[\w-]+)`, true)
+    cb := broker.MessageCallback(`(?i)(belittle) (@*[\w-]+)`, true)
     for {
         select {
         case newReq := <-cb.Chan:
@@ -23,14 +23,14 @@ func belittleUser(broker *lazlo.Broker) {
 }
 
 func makeFunOfUser(b *lazlo.Broker, req lazlo.PatternMatch) {
-    lazlo.logger.Info("Making fun of a user: %s", req[2])
+    lazlo.Logger.Info("Making fun of a user: %s", req[2])
 }
 
 func randomShitSaying() string {
     now := time.Now()
-    rand.Seed(int64(now.Unix())
+    rand.Seed(int64(now.Unix()))
     replies := []String{
-        " you suck." 
+        " you suck.",
     }
 
     return replies[rand.Intn(len(replies)-1)]
